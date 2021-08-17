@@ -1,15 +1,14 @@
 import React, {useState, useContext} from 'react';
 import {MainContext} from '../../contexts/main-context';
 import {useHistory} from 'react-router-dom';
-import ApiService from '../../services/api-service';
-
-const apiService = new ApiService();
+import {ApiContext} from '../../contexts/api-context';
 
 function LoginComponent(props) {
     const [email, changeEmail] = useState('');
     const [password, changePassword] = useState('');
     const [isDisabled, changeDisabled] = useState(true);
     const {setJwt} = useContext(MainContext);
+    const apiService = useContext(ApiContext);
     const history = useHistory();
 
     function toggleDisabled() {
@@ -38,14 +37,7 @@ function LoginComponent(props) {
     function handleSubmit(event) {
         event.preventDefault();
 
-        const user = {
-            email,
-            password
-        };
-
-        console.log(user);
-
-        apiService.authenticate(user)
+        apiService.authenticate({email, password})
             .then((res) => {
                 return res.json();
             })
@@ -53,7 +45,6 @@ function LoginComponent(props) {
                 setJwt(res.token);
                 history.push('/home');
             });
-            
     }
 
     return (
