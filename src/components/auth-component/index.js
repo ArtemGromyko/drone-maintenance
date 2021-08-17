@@ -8,7 +8,7 @@ function AuthComponent(props) {
 
     useEffect(()=>{
         if(jwt === '' || !jwt){
-            history.push('/')
+            history.push('/login')
         }
     }, []);
 

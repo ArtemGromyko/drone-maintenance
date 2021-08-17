@@ -3,7 +3,8 @@ import {MainContext} from '../../contexts/main-context';
 import {useHistory} from 'react-router-dom';
 import {ApiContext} from '../../contexts/api-context';
 
-function LoginComponent(props) {
+function RegisterComponent(props) {
+    const [name, changeName] = useState('');
     const [email, changeEmail] = useState('');
     const [password, changePassword] = useState('');
     const [isDisabled, changeDisabled] = useState(true);
@@ -12,7 +13,7 @@ function LoginComponent(props) {
     const history = useHistory();
 
     function toggleDisabled() {
-        if (email !== '' && password !== '') {
+        if (email !== '' && password !== '' && name !=='') {
             changeDisabled(false);
         } else {
             changeDisabled(true);
@@ -21,6 +22,10 @@ function LoginComponent(props) {
 
     function handleChange(event) {
         switch (event.target.name) {
+            case 'name':
+                changeName(event.target.value);
+                toggleDisabled();
+                break;
             case 'email':
                 changeEmail(event.target.value);
                 toggleDisabled();
@@ -37,7 +42,7 @@ function LoginComponent(props) {
     function handleSubmit(event) {
         event.preventDefault();
 
-        apiService.authenticate({email, password})
+        apiService.register({email, name, password})
             .then((res) => {
                 return res.json();
             })
@@ -62,6 +67,17 @@ function LoginComponent(props) {
                     </div>
                 </div>
                 <div >
+                    <label htmlFor="" >Name</label>
+                    <div>
+                        <input type="name" value={name} name="name"
+                                onChange={handleChange}
+                                required/>
+                        <span>
+                            <i ></i>
+                        </span>
+                    </div>
+                </div>
+                <div >
                     <label htmlFor="" >Password</label>
                     <div >
                     <input type="password" 
@@ -75,7 +91,7 @@ function LoginComponent(props) {
                 </div>
                 <div className="field">
                     <button type="submit" onClick={handleSubmit} disabled={isDisabled}>
-                        Sign in
+                        Sign up
                     </button>
                 </div> 
             </form>
@@ -83,4 +99,4 @@ function LoginComponent(props) {
     );
 }
 
-export default LoginComponent
+export default RegisterComponent;

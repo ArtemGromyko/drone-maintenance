@@ -21,5 +21,12 @@ export default class ApiService {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }, body: JSON.stringify(user)});
-    } 
+    }; 
+
+    register = async (user) => {
+        return await fetch(`${this._apiBase}/users/registration`, {method: 'POST', headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }, body: JSON.stringify(user)});
+    }
 }

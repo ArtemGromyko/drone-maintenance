@@ -7,6 +7,7 @@ import AuthComponent from '../../components/auth-component';
 import {ApiContext} from '../../contexts/api-context';
 import ApiService from '../../services/api-service';
 import Header from '../header';
+import RegisterComponent from '../register-component';
 
 import './app.css';
 
@@ -17,12 +18,15 @@ function App() {
         <ApiContext.Provider value={apiService}>
             <div>
                 <Header/>
-                <Switch> 
-                    <Route path='/main-page'>
+                <Switch>
+                    <Route exact path='/'>
                         <div>hello world</div>
                     </Route>
-                    <Route exact path='/'>
+                    <Route path='/login'>
                         <LoginComponent/>
+                    </Route>
+                    <Route path='/register'>
+                        <RegisterComponent/>
                     </Route>
                     <Route path='/home'>
                         <AuthComponent>
