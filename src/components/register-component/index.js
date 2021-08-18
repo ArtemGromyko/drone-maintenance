@@ -82,50 +82,6 @@ function RegisterComponent(props) {
                 </Typography>
             </Paper>
         </Grid>
-
-        // <section >
-        //     <form >
-        //         <div >
-        //             <label htmlFor="" >Email</label>
-        //             <div>
-        //                 <input type="email" value={email} name="email"
-        //                         onChange={handleChange}
-        //                         required/>
-        //                 <span>
-        //                     <i ></i>
-        //                 </span>
-        //             </div>
-        //         </div>
-        //         <div >
-        //             <label htmlFor="" >Name</label>
-        //             <div>
-        //                 <input type="name" value={name} name="name"
-        //                         onChange={handleChange}
-        //                         required/>
-        //                 <span>
-        //                     <i ></i>
-        //                 </span>
-        //             </div>
-        //         </div>
-        //         <div >
-        //             <label htmlFor="" >Password</label>
-        //             <div >
-        //             <input type="password" 
-        //                     value={password} name="password"
-        //                     onChange={handleChange}
-        //                     required/>
-        //                 <span >
-        //                     <i></i>
-        //                 </span>
-        //             </div>
-        //         </div>
-        //         <div className="field">
-        //             <button type="submit" onClick={handleSubmit} disabled={isDisabled}>
-        //                 Sign up
-        //             </button>
-        //         </div> 
-        //     </form>
-        // </section>
     );
 }
 

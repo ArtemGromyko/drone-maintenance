@@ -1,7 +1,16 @@
-.NavBar{
+.header {
     display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    background-color: #000000;
+    min-height: 75px;
 }
 
-.Logo{
-    display: inline-block;
+.header__nav {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    color: #ffffff;
 }

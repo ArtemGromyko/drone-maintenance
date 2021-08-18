@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Avatar, Grid, Paper } from '@material-ui/core';
 
 import './header.css';
