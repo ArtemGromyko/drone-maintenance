@@ -1,10 +1,10 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import LoginComponent from '../login-component';
 import LoggedComponent from '../logged-component';
 import AuthComponent from '../../components/auth-component';
-import {ApiContext} from '../../contexts/api-context';
+import { ApiContext } from '../../contexts/api-context';
 import ApiService from '../../services/api-service';
 import Header from '../header';
 import RegisterComponent from '../register-component';
@@ -17,20 +17,21 @@ function App() {
     return (
         <ApiContext.Provider value={apiService}>
             <div>
-                <Header/>
                 <Switch>
                     <Route exact path='/'>
+                        <Header />
                         <div>hello world</div>
                     </Route>
                     <Route path='/login'>
-                        <LoginComponent/>
+                        <LoginComponent />
                     </Route>
                     <Route path='/register'>
-                        <RegisterComponent/>
+                        <RegisterComponent />
                     </Route>
                     <Route path='/home'>
+                        <Header />
                         <AuthComponent>
-                            <LoggedComponent/>
+                            <LoggedComponent />
                         </AuthComponent>
                     </Route>
                 </Switch>

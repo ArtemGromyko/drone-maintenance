@@ -2,6 +2,12 @@ import React, {useState, useContext} from 'react';
 import {MainContext} from '../../contexts/main-context';
 import {useHistory} from 'react-router-dom';
 import {ApiContext} from '../../contexts/api-context';
+import {Avatar, Grid, Paper} from '@material-ui/core';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { TextField } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 function RegisterComponent(props) {
     const [name, changeName] = useState('');
@@ -52,50 +58,74 @@ function RegisterComponent(props) {
             });
     }
 
+    const paperStyle = {padding:20, height: '50vh', width: 280, margin: '20px auto'};
+    const avatarStyle = {backgroundColor: '#40E0D0'}
+    const buttonStyle = {marginTop: 40, marginBottom: 40}
     return (
-        <section >
-            <form >
-                <div >
-                    <label htmlFor="" >Email</label>
-                    <div>
-                        <input type="email" value={email} name="email"
-                                onChange={handleChange}
-                                required/>
-                        <span>
-                            <i ></i>
-                        </span>
-                    </div>
-                </div>
-                <div >
-                    <label htmlFor="" >Name</label>
-                    <div>
-                        <input type="name" value={name} name="name"
-                                onChange={handleChange}
-                                required/>
-                        <span>
-                            <i ></i>
-                        </span>
-                    </div>
-                </div>
-                <div >
-                    <label htmlFor="" >Password</label>
-                    <div >
-                    <input type="password" 
-                            value={password} name="password"
-                            onChange={handleChange}
-                            required/>
-                        <span >
-                            <i></i>
-                        </span>
-                    </div>
-                </div>
-                <div className="field">
-                    <button type="submit" onClick={handleSubmit} disabled={isDisabled}>
-                        Sign up
-                    </button>
-                </div> 
-            </form>
-        </section>
+        <Grid>
+            <Paper elevation={10} style={paperStyle}>
+                <Grid align='center'>
+                    <Avatar style={avatarStyle}><AccountCircleIcon/></Avatar>
+                    <h2>Sign up</h2>
+                </Grid>
+                <TextField name='name' label='Name' value={name} onChange={handleChange} placeholder='Enter name' fullWidth required/>
+                <TextField name='email' label='Email' value={email} onChange={handleChange} placeholder='Enter email' fullWidth required/>
+                <TextField name='password' label='Password' 
+                            placeholder='Enter password' 
+                            type='password' fullWidth required value={password} onChange={handleChange}/>
+                <Button style={buttonStyle} type='submit' color='primary' 
+                        variant='contained' fullWidth onClick={handleSubmit} disabled={isDisabled}>Sign up</Button>
+                <Typography align='right' style={{marginTop: 100}}>
+                    <Link style={{textDecoration: 'none'}} to="/">
+                        Cancel
+                    </Link>
+                </Typography>
+            </Paper>
+        </Grid>
+
+        // <section >
+        //     <form >
+        //         <div >
+        //             <label htmlFor="" >Email</label>
+        //             <div>
+        //                 <input type="email" value={email} name="email"
+        //                         onChange={handleChange}
+        //                         required/>
+        //                 <span>
+        //                     <i ></i>
+        //                 </span>
+        //             </div>
+        //         </div>
+        //         <div >
+        //             <label htmlFor="" >Name</label>
+        //             <div>
+        //                 <input type="name" value={name} name="name"
+        //                         onChange={handleChange}
+        //                         required/>
+        //                 <span>
+        //                     <i ></i>
+        //                 </span>
+        //             </div>
+        //         </div>
+        //         <div >
+        //             <label htmlFor="" >Password</label>
+        //             <div >
+        //             <input type="password" 
+        //                     value={password} name="password"
+        //                     onChange={handleChange}
+        //                     required/>
+        //                 <span >
+        //                     <i></i>
+        //                 </span>
+        //             </div>
+        //         </div>
+        //         <div className="field">
+        //             <button type="submit" onClick={handleSubmit} disabled={isDisabled}>
+        //                 Sign up
+        //             </button>
+        //         </div> 
+        //     </form>
+        // </section>
     );
 }
 

@@ -2,6 +2,12 @@ import React, {useState, useContext} from 'react';
 import {MainContext} from '../../contexts/main-context';
 import {useHistory} from 'react-router-dom';
 import {ApiContext} from '../../contexts/api-context';
+import {Avatar, Grid, Paper} from '@material-ui/core';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { TextField } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 function LoginComponent(props) {
     const [email, changeEmail] = useState('');
@@ -47,40 +53,34 @@ function LoginComponent(props) {
             });
     }
 
+    const paperStyle = {padding:20, height: '50vh', width: 280, margin: '20px auto'};
+    const avatarStyle = {backgroundColor: '#40E0D0'}
+    const buttonStyle = {marginTop: 40, marginBottom: 40}
     return (
-        <section >
-            <form >
-                <div >
-                    <label htmlFor="" >Email</label>
-                    <div>
-                        <input type="email" value={email} name="email"
-                                onChange={handleChange}
-                                required/>
-                        <span>
-                            <i ></i>
-                        </span>
-                    </div>
-                </div>
-                <div >
-                    <label htmlFor="" >Password</label>
-                    <div >
-                    <input type="password" 
-                            value={password} name="password"
-                            onChange={handleChange}
-                            required/>
-                        <span >
-                            <i></i>
-                        </span>
-                    </div>
-                </div>
-                <div className="field">
-                    <button type="submit" onClick={handleSubmit} disabled={isDisabled}>
-                        Sign in
-                    </button>
-                </div> 
-            </form>
-        </section>
+        <Grid>
+            <Paper elevation={10} style={paperStyle}>
+                <Grid align='center'>
+                    <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
+                    <h2>Sign in</h2>
+                </Grid>
+                <TextField name='email' label='Email' value={email} onChange={handleChange} placeholder='Enter email' fullWidth required/>
+                <TextField name='password' label='Password' 
+                            placeholder='Enter password' 
+                            type='password' fullWidth required value={password} onChange={handleChange}/>
+                <Button style={buttonStyle} type='submit' color='primary' variant='contained' fullWidth onClick={handleSubmit} disabled={isDisabled}>Sign in</Button>
+                <Typography>
+                    <Link style={{textDecoration: 'none'}} to="/register">
+                        Create an account
+                    </Link>
+                </Typography>
+                <Typography align='right' style={{marginTop: 120}}>
+                    <Link style={{textDecoration: 'none'}} to="/">
+                        Cancel
+                    </Link>
+                </Typography>
+            </Paper>
+        </Grid>
     );
 }
 
-export default LoginComponent
+export default LoginComponent;

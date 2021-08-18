@@ -17,7 +17,6 @@ function LoggedComponent(props) {
             {JSON.stringify(parsedJwt)}
         </div>
     )
-
 }
 
 export default LoggedComponent
