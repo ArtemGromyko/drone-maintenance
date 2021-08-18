@@ -1,20 +1,19 @@
 import React, {useState, useContext} from 'react';
 import {MainContext} from '../../contexts/main-context';
 import {useHistory} from 'react-router-dom';
-import {ApiContext} from '../../contexts/api-context';
 import {Avatar, Grid, Paper} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { TextField } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { authenticate } from '../../services/api-service';
 
 function LoginComponent(props) {
     const [email, changeEmail] = useState('');
     const [password, changePassword] = useState('');
     const [isDisabled, changeDisabled] = useState(true);
     const {setJwt} = useContext(MainContext);
-    const apiService = useContext(ApiContext);
     const history = useHistory();
 
     function toggleDisabled() {
@@ -43,7 +42,7 @@ function LoginComponent(props) {
     function handleSubmit(event) {
         event.preventDefault();
 
-        apiService.authenticate({email, password})
+        authenticate({email, password})
             .then((res) => {
                 return res.json();
             })
@@ -54,8 +53,8 @@ function LoginComponent(props) {
     }
 
     const paperStyle = {padding:20, height: '50vh', width: 280, margin: '20px auto'};
-    const avatarStyle = {backgroundColor: '#40E0D0'}
-    const buttonStyle = {marginTop: 40, marginBottom: 40}
+    const avatarStyle = {backgroundColor: '#40E0D0'};
+    const buttonStyle = {marginTop: 40, marginBottom: 40};
     return (
         <Grid>
             <Paper elevation={10} style={paperStyle}>

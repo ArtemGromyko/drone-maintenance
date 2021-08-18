@@ -6,18 +6,13 @@ import './header.css';
 
 const Header = () => {
     return (
-        <Grid direction='row' container alignItems='baseline'>
-            <h3>
+        <Grid style={{width:'70%'}} className='header' direction='row' container alignItems='baseline' justifyContent="space-between">
+            <h1>
                 <Link to="/">
                     Drone Maintenance
                 </Link>
-            </h3>
-            <div>
-                <Link to="/login">Sign in</Link>
-            </div>
-            <div>
-                <Link to="/register">Sign up</Link>
-            </div>
+            </h1>
+            <Link to="/login">Sign in</Link>
         </Grid>
     );
 };
